@@ -1,0 +1,30 @@
+﻿@viewModel DotvvmControls.Composite.ViewModels.DefaultViewModel, DotvvmControls.Composite
+@masterPage Views/MasterPage.dotmaster
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div class="container">
+
+        <h1>Detail zákazníka</h1>
+
+        <form class="form">
+            <cc:StringField LabelText="Jméno"
+                            Text="{value: FirstName}" />
+
+            <cc:StringField LabelText="Příjmení"
+                            Text="{value: LastName}" />
+
+            <cc:IntField LabelText="Věk"
+                         Value="{value: Age}"
+                         Enabled="{value: AgeEnabled}" />
+
+            <div class="form-check">
+                <dot:CheckBox class="form-check-input" Checked="{value: AgeEnabled}" />
+                <label class="form-check-label">
+                    Povolit editaci věku
+                </label>
+            </div>
+        </form>
+
+    </div>
+    
+</dot:Content>

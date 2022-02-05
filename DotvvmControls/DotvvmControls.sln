@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotvvmControls.Composite", "DotvvmControls.Composite\DotvvmControls.Composite.csproj", "{78AB9964-1971-4E18-9BBA-28A1541B699D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78AB9964-1971-4E18-9BBA-28A1541B699D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78AB9964-1971-4E18-9BBA-28A1541B699D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78AB9964-1971-4E18-9BBA-28A1541B699D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78AB9964-1971-4E18-9BBA-28A1541B699D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5611E4DE-917C-4F7A-94CE-0CFF90A66610}
+	EndGlobalSection
+EndGlobal
