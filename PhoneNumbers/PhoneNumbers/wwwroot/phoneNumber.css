@@ -1,0 +1,18 @@
+﻿/* PhoneNumber1 */
+.phone-number:before {
+    content: '📞'
+}
+
+/* PhoneNumber2 */
+.phone-number-icon:before {
+    font-style: normal;
+    content: '📞'
+}
+
+/* PhoneNumber3 */
+.phone-number-clever:empty:before {
+    content: '\00a0'    /* &nbsp; */
+}
+.phone-number-clever:not(:empty):before {
+    content: '📞'
+}
