@@ -1,0 +1,20 @@
+﻿@viewModel CompositeControlsDemo.ViewModels.MasterPageViewModel, CompositeControlsDemo
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>DotVVM Composite Controls demo</title>
+    <dot:RequiredResource Name="bootstrap"/>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1 class="mb-4">Composite controls demo</h1>
+
+        <dot:ContentPlaceHolder ID="MainContent" />
+    </div>
+
+</body>
+</html>

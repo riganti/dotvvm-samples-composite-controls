@@ -1,0 +1,22 @@
+﻿@viewModel CompositeControlsDemo.ViewModels.ThumbnailsViewModel, CompositeControlsDemo
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h2>Thumbnails</h2>
+
+    <p>This page shows how to implement the same data-source powered control using the legacy and composite approach.</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <cc:ThumbnailList Title="Legacy" DataSource="{value: People}" ItemImageUrlBinding="{value: ImageUrl}" />
+
+        </div>
+        <div class="col-md-6">
+            <cc:ThumbnailListComposite Title="Composite" DataSource="{value: People}" ItemImageUrlBinding="{value: ImageUrl}" />
+        </div>
+    </div>
+
+
+</dot:Content>
+

@@ -1,0 +1,40 @@
+﻿@viewModel CompositeControlsDemo.ViewModels.PhoneNumbersViewModel, CompositeControlsDemo
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h2>PhoneNumber control</h2>
+
+    <p>This page shows multiple ways how to make a control which either displays a phone number with a telephone icon, or displays a placeholder text when the value is null or empty.</p>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <h3>Option 1</h3>
+
+            <dot:Repeater DataSource="{value: PhoneNumbers}">
+                <div>
+                    <cc:PhoneNumber1 PhoneNumber="{value: _this}" />
+                </div>
+            </dot:Repeater>
+        </div>
+        <div class="col-md-4">
+            <h3>Option 2</h3>
+
+            <dot:Repeater DataSource="{value: PhoneNumbers}">
+                <div>
+                    <cc:PhoneNumber2 PhoneNumber="{value: _this}" />
+                </div>
+            </dot:Repeater>
+        </div>
+        <div class="col-md-4">
+            <h3>Option 3</h3>
+
+            <dot:Repeater DataSource="{value: PhoneNumbers}">
+                <div>
+                    <cc:PhoneNumber3 PhoneNumber="{value: _this}" />
+                </div>
+            </dot:Repeater>
+        </div>
+    </div>
+</dot:Content>
+

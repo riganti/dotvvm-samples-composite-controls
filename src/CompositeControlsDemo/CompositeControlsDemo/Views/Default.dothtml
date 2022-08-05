@@ -1,0 +1,9 @@
+﻿@viewModel CompositeControlsDemo.ViewModels.DefaultViewModel, CompositeControlsDemo
+@masterPage Views/MasterPage.dotmaster
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <dot:RouteLink RouteName="PhoneNumbers" Text="Phone numbers" class="btn btn-primary" />
+    <dot:RouteLink RouteName="FormControls" Text="Form controls" class="btn btn-primary" />
+    <dot:RouteLink RouteName="Thumbnails" Text="Thumbnails" class="btn btn-primary" />
+
+</dot:Content>

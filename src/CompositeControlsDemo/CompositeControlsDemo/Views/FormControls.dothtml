@@ -1,0 +1,31 @@
+﻿@viewModel CompositeControlsDemo.ViewModels.FormControlsViewModel, CompositeControlsDemo
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h2>Customer details</h2>
+
+    <p>This sample shows how to share functionality between multiple composite controls by using capability properties.</p>
+
+    <form class="form">
+        <cc:StringField LabelText="First name"
+                        Text="{value: FirstName}" />
+        
+        <cc:StringField LabelText="Last name"
+                        Text="{value: LastName}" />
+
+        <cc:IntField LabelText="Age"
+                     Value="{value: Age}"
+                     Enabled="{value: AgeEnabled}" />
+
+        <div class="form-check">
+            <dot:CheckBox class="form-check-input" Checked="{value: AgeEnabled}" />
+            <label class="form-check-label">
+                Allow edit age
+            </label>
+        </div>
+    </form>
+
+
+</dot:Content>
+

@@ -1,7 +1,0 @@
-﻿@viewModel System.Object, mscorlib
-@baseType DotvvmControlsDemo.Controls.ThumbnailPlaceholder, DotvvmControlsDemo
-@noWrapperTag 
-
-<img src="{value: string.IsNullOrEmpty(_control.ImageUrl) ? $"https://via.placeholder.com/{_control.Size}" : _control.ImageUrl}" 
-     style="{value: $"height: {_control.Size}px"}" 
-     alt="Placeholder" />
