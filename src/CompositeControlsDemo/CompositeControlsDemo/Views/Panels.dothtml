@@ -1,0 +1,18 @@
+﻿@viewModel CompositeControlsDemo.ViewModels.PanelsViewModel, CompositeControlsDemo
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <cc:Panel HeaderText="Panel 1" Text="My panel" />
+
+    <cc:Panel>
+        <HeaderContent>
+            <h2>Panel 2</h2>
+        </HeaderContent>
+
+        My <strong>panel</strong>
+    </cc:Panel>
+
+
+</dot:Content>
+

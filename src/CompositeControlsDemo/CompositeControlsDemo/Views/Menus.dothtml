@@ -1,0 +1,21 @@
+﻿@viewModel CompositeControlsDemo.ViewModels.MenusViewModel, CompositeControlsDemo
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h2>Hard-coded</h2>
+    <cc:Menu>
+        <cc:MenuItem Text="Page 1" Url="/Menus/1" IsActive="{value: ActivePageIndex == 1}" />
+        <cc:MenuItem Text="Page 2" Url="/Menus/2" IsActive="{value: ActivePageIndex == 2}" />
+        <cc:MenuItem Text="Page 3" Url="/Menus/3" IsActive="{value: ActivePageIndex == 3}" />
+    </cc:Menu>
+
+    <h2>Generated</h2>
+    <cc:Menu DataSource="{value: MenuItems}"
+             ItemText="{value: Title}"
+             ItemUrl="{value: "/Menus/" + Id}"
+             ItemIsActive="{value: Id == _root.ActivePageIndex}">
+    </cc:Menu>
+
+</dot:Content>
+

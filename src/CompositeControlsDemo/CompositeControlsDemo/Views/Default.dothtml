@@ -5,5 +5,7 @@
     <dot:RouteLink RouteName="PhoneNumbers" Text="Phone numbers" class="btn btn-primary" />
     <dot:RouteLink RouteName="FormControls" Text="Form controls" class="btn btn-primary" />
     <dot:RouteLink RouteName="Thumbnails" Text="Thumbnails" class="btn btn-primary" />
+    <dot:RouteLink RouteName="Panels" Text="Panel" class="btn btn-primary" />
+    <dot:RouteLink RouteName="Menus" Text="Menu" class="btn btn-primary" />
 
 </dot:Content>

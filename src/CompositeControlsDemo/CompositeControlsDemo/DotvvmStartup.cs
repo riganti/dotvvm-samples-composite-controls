@@ -1,4 +1,6 @@
 ﻿using CompositeControlsDemo.Controls.Forms;
+using CompositeControlsDemo.Controls.Menus;
+using CompositeControlsDemo.Controls.Panels;
 using CompositeControlsDemo.Controls.PhoneNumbers;
 using CompositeControlsDemo.Controls.Thumbnails.List;
 using CompositeControlsDemo.Controls.Thumbnails.Placeholder;
@@ -24,6 +26,7 @@ namespace CompositeControlsDemo
         private void ConfigureRoutes(DotvvmConfiguration config, string applicationPath)
         {
             config.RouteTable.Add("Default", "", "Views/Default.dothtml");
+            config.RouteTable.Add("Menus", "Menus/{PageIndex?}", "Views/Menus.dothtml");
             config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));    
 
             config.RouteTable.Add("Identicon", "identicon/{size}", _ => new IdenticonPresenter());
@@ -40,6 +43,10 @@ namespace CompositeControlsDemo
             
             config.Markup.AddMarkupControl("cc", "ThumbnailPlaceholder", "Controls/Thumbnails/Placeholder/ThumbnailPlaceholder.dotcontrol");
             config.Markup.AddCodeControls("cc", typeof(ThumbnailPlaceholderComposite));
+
+            config.Markup.AddCodeControls("cc", typeof(Panel));
+
+            config.Markup.AddCodeControls("cc", typeof(Menu));
         }
 
         private void ConfigureResources(DotvvmConfiguration config, string applicationPath)
