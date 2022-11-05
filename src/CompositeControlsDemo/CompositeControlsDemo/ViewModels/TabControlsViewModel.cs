@@ -10,33 +10,46 @@ namespace CompositeControlsDemo.ViewModels
     public class TabControlsViewModel : MasterPageViewModel
     {
 
-        public List<ParkData> Parks { get; set; } = new()
+        public List<ParkData> Parks { get; set; }
+
+        public List<ColumnData> Columns { get; set; }
+
+        public TabControlsViewModel()
         {
-            new ParkData()
+            Parks = new()
             {
-                Name = "Acadia",
-                State = "Maine",
-                ImageUrl = "https://en.wikipedia.org/wiki/File:Bass_Harbor_Head_Light_Station_2016.jpg",
-                Area = 198.6,
-                Established = 1919
-            },
-            new ParkData()
+                new ParkData()
+                {
+                    Name = "Acadia",
+                    State = "Maine",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bass_Harbor_Head_Light_Station_2016.jpg/800px-Bass_Harbor_Head_Light_Station_2016.jpg",
+                    Area = 198.6,
+                    Established = 1919
+                },
+                new ParkData()
+                {
+                    Name = "Arches",
+                    State = "Utah",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/USA_Arches_NP_Delicate_Arch%281%29.jpg/800px-USA_Arches_NP_Delicate_Arch%281%29.jpg",
+                    Area = 310.3,
+                    Established = 1971
+                },
+                new ParkData()
+                {
+                    Name = "Big Bend",
+                    State = "Texas",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/On_the_Border_%2839960085292%29.jpg/800px-On_the_Border_%2839960085292%29.jpg",
+                    Area = 3242.2,
+                    Established = 1944
+                }
+            };
+
+            Columns = new List<ColumnData>()
             {
-                Name = "Arches",
-                State = "Utah",
-                ImageUrl = "https://en.wikipedia.org/wiki/File:USA_Arches_NP_Delicate_Arch(1).jpg",
-                Area = 310.3,
-                Established = 1971
-            },
-            new ParkData()
-            {
-                Name = "Big Bend",
-                State = "Texas",
-                ImageUrl = "https://en.wikipedia.org/wiki/File:On_the_Border_(39960085292).jpg",
-                Area = 3242.2,
-                Established = 1944
-            }
-        };
+                new ColumnData() { Parks2 = Parks },
+                new ColumnData() { Parks2 = Parks }
+            };
+        }
 
     }
 
@@ -47,6 +60,11 @@ namespace CompositeControlsDemo.ViewModels
         public string ImageUrl { get; set; }
         public double Area { get; set; }
         public int Established { get; set; }
+    }
+
+    public class ColumnData
+    {
+        public List<ParkData> Parks2 { get; set; }
     }
 }
 

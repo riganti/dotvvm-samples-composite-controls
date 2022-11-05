@@ -11,7 +11,7 @@ public class TabItem : CompositeControl
     )
     {
         return new HtmlGenericControl("div", html)
-            .AddCssClass("tab-body")
+            .AddCssClass("tab-pane fade")
             .AppendChildren(new TemplateHost(tabControl.Template));
     }
 

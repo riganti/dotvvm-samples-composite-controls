@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using CompositeControlsDemo.Controls.Menus;
+using CompositeControlsDemo.Utils;
 using DotVVM.Framework.Binding;
 using DotVVM.Framework.Binding.Expressions;
 using DotVVM.Framework.Binding.Properties;
+using DotVVM.Framework.Compilation;
 using DotVVM.Framework.Compilation.ControlTree;
 using DotVVM.Framework.Controls;
 using DotVVM.Framework.Utils;
@@ -31,64 +33,53 @@ namespace CompositeControlsDemo.Controls.TabControls
 
             ItemsOrDataSourceCapability<TabItem> itemsOrDataSource)
         {
+            // build control ID generator
+            var controlId = this.CreateClientId() ?? this.GetDotvvmUniqueId();
+            
+            Func<int?, ValueOrBinding<string>> controlIdGenerator;
+            if (itemsOrDataSource.DataSource != null)
+            {
+                var childDataContext = itemsOrDataSource.DataSource.GetProperty<CollectionElementDataContextBindingProperty>().DataContext;
+                controlId = IdUtils.ConcatStringBindings(bindingService,
+                    IdUtils.TransferToChildContext(bindingService, controlId, childDataContext), 
+                    IdUtils.GetTabIndexIdFragment(bindingService, childDataContext)
+                );
+                controlIdGenerator = _ => controlId;
+            }
+            else
+            {
+                controlIdGenerator = itemIndex => IdUtils.ConcatStringBindings(bindingService, controlId, new ValueOrBinding<string>("_tab" + itemIndex));
+            }
+
             return new HtmlGenericControl("div", html)
                 .AppendChildren(
                     itemsOrDataSource.ToItemsOrRepeater("ul",
                             () => new TabItem().SetCapability(tabControl),
-                            (tabItem, itemIndex) =>
-                            {
-                                // TODO: problem, we are joining bindings with different contexts
-                                var targetId = this.GetDotvvmUniqueId(
-                                    prefix: ValueOrBinding<string>.FromBoxedValue("#"), 
-                                    suffix: GetTabIndexIdFragment(itemIndex, itemsOrDataSource.DataSource));
-
-                                return new HtmlGenericControl("li")
+                            (tabItem, itemIndex) => 
+                                new HtmlGenericControl("li")
                                     .AddCssClass("nav-item")
+                                    .AddAttribute("role", "presentation")
                                     .AppendChildren(
                                         new HtmlGenericControl("button")
                                             .AddCssClass("nav-link")
-                                            .AddAttribute("data-bs-toggle", "tag")
-                                            .AddAttribute("data-bs-target", targetId)
+                                            .AddAttribute("data-bs-toggle", "tab")
+                                            .AddAttribute("data-bs-target", IdUtils.ConcatStringBindings(bindingService, new ValueOrBinding<string>("#"), controlIdGenerator(itemIndex)))
+                                            .AddAttribute("role", "tab")
                                             .SetProperty(a => a.InnerText, tabItem.GetCapability<TabControlCapability>().HeaderText)
-                                    );
-                            })
+                                    ))
+                        .AddAttribute("role", "tablist")
                         .AddCssClasses("nav", "nav-tabs"),
 
                     itemsOrDataSource.ToItemsOrRepeater("div",
                         () => new TabItem().SetCapability(tabControl),
                         (tabItem, itemIndex) =>
                         {
-                            var id = this.GetDotvvmUniqueId(
-                                suffix: GetTabIndexIdFragment(itemIndex, itemsOrDataSource.DataSource)
-                            );
                             return tabItem
-                                .SetProperty(i => i.ID, id);
-                        }
-                    )
+                                .SetProperty(i => i.ID, controlIdGenerator(itemIndex))
+                                .SetProperty(i => i.ClientIDMode, ClientIDMode.Static);
+                        })
+                        .AddCssClass("tab-content")
                 );
         }
-
-        private ValueOrBinding<string> GetTabIndexIdFragment(int? itemIndex, IValueBinding? dataSourceBinding)
-        {
-            if (itemIndex != null)
-            {
-                return ValueOrBinding<string>.FromBoxedValue("_tab" + itemIndex);
-            }
-
-            var dataContext = dataSourceBinding!.GetProperty<CollectionElementDataContextBindingProperty>().DataContext;
-            var indexBinding = bindingService.Cache.CreateCachedBinding("_index", new object[] { dataContext }, 
-                () => new ValueBindingExpression<string>(bindingService, new object?[] 
-                    {
-                        dataContext,
-                        new ParsedExpressionBindingProperty(
-                            ExpressionUtils.Replace((int id) => "tab_" + id, CreateIndexBindingExpression(dataContext))
-                        )
-                    }));
-            return ValueOrBinding<string>.FromBoxedValue(indexBinding);
-        }
-
-        private static ParameterExpression CreateIndexBindingExpression(DataContextStack dataContext) =>
-            Expression.Parameter(typeof(int), "_index")
-                .AddParameterAnnotation(new BindingParameterAnnotation(dataContext, new CurrentCollectionIndexExtensionParameter()));
     }
 }

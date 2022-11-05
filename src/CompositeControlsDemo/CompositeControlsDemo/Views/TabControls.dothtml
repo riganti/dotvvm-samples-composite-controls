@@ -7,13 +7,19 @@
 
     <p>This sample shows how deal with generating predictable control IDs.</p>
 
+    <p>
+        The implementation is not finished - the scenario of hosting the control in a different Repeater is not supported.
+        Also, the IdUtils class lacks caching so the control may create performance issues.
+        We'll be adding a better support for this in the framework.
+    </p>
+
     <h3>Generated from DataSource</h3>
     <cc:TabControl DataSource="{value: Parks}"
                    ItemHeaderText="{value: State}">
         <ItemTemplate>
             <div class="row">
                 <div class="col-md-2">
-                    <img src="{value: ImageUrl}" alt="{value: Name}" />
+                    <img src="{value: ImageUrl}" alt="{value: Name}" class="img-fluid" />
                 </div>
                 <div class="col-md-10">
                     <h4>{{value: Name}}</h4>
@@ -30,12 +36,14 @@
         </ItemTemplate>
     </cc:TabControl>
 
-    <%--<h3>Items in markup</h3>
+    <h3>Items in markup</h3>
     <cc:TabControl>
         <cc:TabItem HeaderText="Maine">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="https://en.wikipedia.org/wiki/File:Bass_Harbor_Head_Light_Station_2016.jpg" alt="Acadia" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bass_Harbor_Head_Light_Station_2016.jpg/800px-Bass_Harbor_Head_Light_Station_2016.jpg"
+                         alt="Acadia"
+                         class="img-fluid" />
                 </div>
                 <div class="col-md-10">
                     <h4>Acadia</h4>
@@ -53,7 +61,9 @@
         <cc:TabItem HeaderText="Utah">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="https://en.wikipedia.org/wiki/File:USA_Arches_NP_Delicate_Arch(1).jpg" alt="Arches" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/USA_Arches_NP_Delicate_Arch%281%29.jpg/800px-USA_Arches_NP_Delicate_Arch%281%29.jpg"
+                         alt="Arches"
+                         class="img-fluid" />
                 </div>
                 <div class="col-md-10">
                     <h4>Arches</h4>
@@ -71,7 +81,9 @@
         <cc:TabItem HeaderText="Texas">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="https://en.wikipedia.org/wiki/File:On_the_Border_(39960085292).jpg" alt="Big Bend" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/On_the_Border_%2839960085292%29.jpg/800px-On_the_Border_%2839960085292%29.jpg"
+                         alt="Big Bend"
+                         class="img-fluid" />
                 </div>
                 <div class="col-md-10">
                     <h4>Big Bend</h4>
@@ -86,6 +98,101 @@
                 </div>
             </div>
         </cc:TabItem>
-    </cc:TabControl>--%>
+    </cc:TabControl>
+
+    <%--<h3>In Repeater</h3>
+    <dot:Repeater DataSource="{value: Columns}" class="row">
+        <div class="col-xl-6">
+
+            <h3>Generated from DataSource</h3>
+            <cc:TabControl DataSource="{value: Parks2}"
+                           ItemHeaderText="{value: State}">
+                <ItemTemplate>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{value: ImageUrl}" alt="{value: Name}" class="img-fluid" />
+                        </div>
+                        <div class="col-md-10">
+                            <h4>{{value: Name}}</h4>
+                            <div class="mb-3">
+                                <label class="control-label">Open since</label>
+                                <input type="text" class="form-control-static" readonly value="{value: Established}" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="control-label">Area in km<sup>2</sup></label>
+                                <input type="text" class="form-control-static" readonly value="{value: Area}" />
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </cc:TabControl>
+
+            <h3>Items in markup</h3>
+            <cc:TabControl>
+                <cc:TabItem HeaderText="Maine">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bass_Harbor_Head_Light_Station_2016.jpg/800px-Bass_Harbor_Head_Light_Station_2016.jpg"
+                                 alt="Acadia"
+                                 class="img-fluid" />
+                        </div>
+                        <div class="col-md-10">
+                            <h4>Acadia</h4>
+                            <div class="mb-3">
+                                <label class="control-label">Open since</label>
+                                <input type="text" class="form-control-static" readonly value="1919" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="control-label">Area in km<sup>2</sup></label>
+                                <input type="text" class="form-control-static" readonly value="198.6" />
+                            </div>
+                        </div>
+                    </div>
+                </cc:TabItem>
+                <cc:TabItem HeaderText="Utah">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/USA_Arches_NP_Delicate_Arch%281%29.jpg/800px-USA_Arches_NP_Delicate_Arch%281%29.jpg"
+                                 alt="Arches"
+                                 class="img-fluid" />
+                        </div>
+                        <div class="col-md-10">
+                            <h4>Arches</h4>
+                            <div class="mb-3">
+                                <label class="control-label">Open since</label>
+                                <input type="text" class="form-control-static" readonly value="1971" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="control-label">Area in km<sup>2</sup></label>
+                                <input type="text" class="form-control-static" readonly value="310.3" />
+                            </div>
+                        </div>
+                    </div>
+                </cc:TabItem>
+                <cc:TabItem HeaderText="Texas">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/On_the_Border_%2839960085292%29.jpg/800px-On_the_Border_%2839960085292%29.jpg"
+                                 alt="Big Bend"
+                                 class="img-fluid" />
+                        </div>
+                        <div class="col-md-10">
+                            <h4>Big Bend</h4>
+                            <div class="mb-3">
+                                <label class="control-label">Open since</label>
+                                <input type="text" class="form-control-static" readonly value="1944" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="control-label">Area in km<sup>2</sup></label>
+                                <input type="text" class="form-control-static" readonly value="3242.2" />
+                            </div>
+                        </div>
+                    </div>
+                </cc:TabItem>
+            </cc:TabControl>
+
+        </div>
+    </dot:Repeater>--%>
+    
 </dot:Content>
 

@@ -55,8 +55,8 @@ namespace CompositeControlsDemo
         private void ConfigureResources(DotvvmConfiguration config, string applicationPath)
         {
             // register custom resources and adjust paths to the built-in resources
-            config.Resources.RegisterStylesheetFile("bootstrap", "wwwroot/bootstrap/css/bootstrap.min.css");
-
+            config.Resources.RegisterStylesheetFile("bootstrap-css", "wwwroot/bootstrap/css/bootstrap.min.css");
+            config.Resources.RegisterScriptFile("bootstrap", "wwwroot/bootstrap/js/bootstrap.bundle.min.js", dependencies: new[] { "bootstrap-css" });
             config.Resources.RegisterStylesheetFile("phoneNumber", "wwwroot/phoneNumber.css");
         }
 
