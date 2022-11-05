@@ -2,6 +2,7 @@
 using CompositeControlsDemo.Controls.Menus;
 using CompositeControlsDemo.Controls.Panels;
 using CompositeControlsDemo.Controls.PhoneNumbers;
+using CompositeControlsDemo.Controls.TabControls;
 using CompositeControlsDemo.Controls.Thumbnails.List;
 using CompositeControlsDemo.Controls.Thumbnails.Placeholder;
 using CompositeControlsDemo.Presenter;
@@ -47,6 +48,8 @@ namespace CompositeControlsDemo
             config.Markup.AddCodeControls("cc", typeof(Panel));
 
             config.Markup.AddCodeControls("cc", typeof(Menu));
+
+            config.Markup.AddCodeControls("cc", typeof(TabControl));
         }
 
         private void ConfigureResources(DotvvmConfiguration config, string applicationPath)

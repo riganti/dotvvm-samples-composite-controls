@@ -1,0 +1,91 @@
+﻿@viewModel CompositeControlsDemo.ViewModels.TabControlsViewModel, CompositeControlsDemo
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <h2>Tab Control</h2>
+
+    <p>This sample shows how deal with generating predictable control IDs.</p>
+
+    <h3>Generated from DataSource</h3>
+    <cc:TabControl DataSource="{value: Parks}"
+                   ItemHeaderText="{value: State}">
+        <ItemTemplate>
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="{value: ImageUrl}" alt="{value: Name}" />
+                </div>
+                <div class="col-md-10">
+                    <h4>{{value: Name}}</h4>
+                    <div class="mb-3">
+                        <label class="control-label">Open since</label>
+                        <input type="text" class="form-control-static" readonly value="{value: Established}" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label">Area in km<sup>2</sup></label>
+                        <input type="text" class="form-control-static" readonly value="{value: Area}" />
+                    </div>
+                </div>
+            </div>
+        </ItemTemplate>
+    </cc:TabControl>
+
+    <%--<h3>Items in markup</h3>
+    <cc:TabControl>
+        <cc:TabItem HeaderText="Maine">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="https://en.wikipedia.org/wiki/File:Bass_Harbor_Head_Light_Station_2016.jpg" alt="Acadia" />
+                </div>
+                <div class="col-md-10">
+                    <h4>Acadia</h4>
+                    <div class="mb-3">
+                        <label class="control-label">Open since</label>
+                        <input type="text" class="form-control-static" readonly value="1919" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label">Area in km<sup>2</sup></label>
+                        <input type="text" class="form-control-static" readonly value="198.6" />
+                    </div>
+                </div>
+            </div>
+        </cc:TabItem>
+        <cc:TabItem HeaderText="Utah">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="https://en.wikipedia.org/wiki/File:USA_Arches_NP_Delicate_Arch(1).jpg" alt="Arches" />
+                </div>
+                <div class="col-md-10">
+                    <h4>Arches</h4>
+                    <div class="mb-3">
+                        <label class="control-label">Open since</label>
+                        <input type="text" class="form-control-static" readonly value="1971" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label">Area in km<sup>2</sup></label>
+                        <input type="text" class="form-control-static" readonly value="310.3" />
+                    </div>
+                </div>
+            </div>
+        </cc:TabItem>
+        <cc:TabItem HeaderText="Texas">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="https://en.wikipedia.org/wiki/File:On_the_Border_(39960085292).jpg" alt="Big Bend" />
+                </div>
+                <div class="col-md-10">
+                    <h4>Big Bend</h4>
+                    <div class="mb-3">
+                        <label class="control-label">Open since</label>
+                        <input type="text" class="form-control-static" readonly value="1944" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label">Area in km<sup>2</sup></label>
+                        <input type="text" class="form-control-static" readonly value="3242.2" />
+                    </div>
+                </div>
+            </div>
+        </cc:TabItem>
+    </cc:TabControl>--%>
+</dot:Content>
+

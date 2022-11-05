@@ -13,8 +13,11 @@ public sealed record ItemsOrDataSourceCapability<TItem> where TItem : DotvvmCont
     public List<TItem>? Items { get; init; }
     public IValueBinding<object>? DataSource { get; init; }
 
-    public HtmlGenericControl ToItemsOrRepeater(string wrapperTagName, Func<TItem> generateItem)
+    public HtmlGenericControl ToItemsOrRepeater(string wrapperTagName, Func<TItem> generateItem, 
+        Func<TItem, int?, DotvvmControl>? transformItem = null)
     {
+        transformItem ??= (i, _) => i;
+
         if (DataSource != null && Items?.Any() == true)
         {
             throw new DotvvmControlException("The Items in the control and the DataSource property cannot be set at the same time!");
@@ -25,14 +28,15 @@ public sealed record ItemsOrDataSourceCapability<TItem> where TItem : DotvvmCont
             return new Repeater()
                 {
                     WrapperTagName = wrapperTagName,
-                    ItemTemplate = new DelegateTemplate(_ => generateItem())
+                    ItemTemplate = new DelegateTemplate(_ => transformItem(generateItem(), null))
                 }
                 .SetProperty(r => r.DataSource, DataSource);
         }
         else
         {
             return new HtmlGenericControl(wrapperTagName)
-                .AppendChildren(Items);
+                .AppendChildren(Items!.Select((item, index) => transformItem(item, index)));
         }
     }
+
 }
